@@ -28,4 +28,25 @@ $(document).ready(() => {
       return $(`[data-id=${item}]`).attr('data-name');
     }).join(', '));
   });
+
+  $.ajax({
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    type: 'GET',
+    success: (res, status) => {
+      if (res.status === 'OK') {
+        $('#api_status').addClass('available');
+      }
+    }
+  });
+
+  // fetch("http://0.0.0.0:5001/api/v1/status/",
+  //     {
+  //         method: 'GET',
+  //         headers: {
+  //             "Origin": window.origin,
+  //             "Refferer": window.document.baseURI,
+  //             'Content-Type': 'application/json',
+  //         },
+  //     }
+  // ).then(data => data.json()).then(stat => console.log(stat))
 });
